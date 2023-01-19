@@ -14,7 +14,6 @@ let alreadyExist = document.querySelector(
 ) as HTMLParagraphElement;
 let removeContacts =
   document.querySelectorAll<HTMLDivElement>(".remove-contact");
-  let displayContact= document.querySelector('.display-contact') as HTMLParagraphElement;
 
 
 interface Contact {
@@ -33,86 +32,122 @@ const checkContactInfo = (): Contact[] => {
 
 let contactArr: Contact[] = checkContactInfo();
 
+let checkContactInformation = ():void => {
+  let displayContact= document.querySelector('.display-contact') as HTMLParagraphElement;
 
-let setContactToLocalStorage = () => {
+  console.log(contactArr)
+  if(contactArr.length == 0){
+    displayContact.style.display='block';
+    console.log('if')
+  }else{
+    displayContact.style.display='none';
+    console.log('else')
+  }}
+    
+  checkContactInformation()
+
+
+let setContactToLocalStorage = ():void => {
   localStorage.setItem("contactInfo", JSON.stringify(contactArr));
+
+  checkContactInformation()
+
   
 };
-
-let checkContactInformation = () => {
-if(contactArr.length <= 0){
-  displayContact.innerHTML='No contact information available';
-}else{
-  displayContact.style.display='none';
-}}
-  
-checkContactInformation()
+// localStorage.clear()
 
 
 
 
-let checkValue = () => {
+
+
+let checkValue = ():void => {
   if (
     insertContactName?.value.trim() == "" ||
     insertContactNumber?.value == null
   )
     return;
+
+    let id:number;
+    if(contactArr.length<=0){
+       id=1
+    }
+    else{
+      id=contactArr[contactArr.length-1].id + 1
+    }
   const newContact: Contact = {
-    id: contactArr.length,
+    id: id,
     contactNamee: insertContactName.value,
     contactNumberr: insertContactNumber.value,
   };
   contactArr.push(newContact);
+  // console.log(contactArr)
+
   setContactToLocalStorage();
   
   addNewContact(newContact);
 
-  // return newContact.id
 };
 
 
 
-let addNewContact = (contact: Contact) => {
-  let content=''
+let addNewContact = (contact: Contact):void => {
+  let content:string=''
 
   content += `
+  
         <div class="contact-content">
         <div class="contact-info">
             <h3>${contact.contactNamee}</h3>
             <p>${contact.contactNumberr}</p>
         </div>
-        <div class="remove-contact">
-            <i class="fa-solid fa-trash"></i>
+        <div class="icons">
+            <i  data-id=${contact.id} class="fa-solid fa-trash  remove-contact"></i>
+           <a href="tel:${contact.contactNumberr}"> <i class="fa-solid fa-phone  call-icon"></i></a>
         </div>
     </div>
+    
 
         `;
   contactList.innerHTML += content;
-
   
   
 
   let removeContacts =
     document.querySelectorAll<HTMLButtonElement>(".remove-contact");
 
-  removeContacts.forEach((r) => {
-    r.addEventListener("click", () => {
-        console.log(contactArr)
-        console.log(contact.id)
-      contactArr.map((i,index) => {
-        if (i.id == contact.id) {
-          // let index = contactArr.indexOf(contact);
+
+  removeContacts.forEach((removeButton) => {
+    removeButton.addEventListener("click", () => {
+        // console.log(contactArr)
+      contactArr.map((contactItem,index) => {
+        let stringContactId:(string|undefined)=removeButton?.dataset.id
+        if(stringContactId!==undefined){
+         let contactIdNumber:number =parseInt(stringContactId);
+        if (contactItem.id == contactIdNumber) {
           contactArr.splice(index, 1);
+          let contactInfo= removeButton.closest('.contact-content') as HTMLDivElement;
+          if(contactInfo!==null){
+          contactInfo.style.display="none";}
           console.log("remove");
 
+
         }
-      });
+      }}
+      );
+      // console.log(contactArr)
+
+      checkContactInformation()
+
       setContactToLocalStorage();
+
 
 
     });
 
+
   });
+
 
 };
 
@@ -120,10 +155,8 @@ contactArr.forEach(addNewContact);
 
 
 form.addEventListener("submit", (e) => {
-  // e.preventDefault();
-  checkValue();
-
-
+  e.preventDefault();
+  checkValue()
   insertContactName.value = "";
   insertContactNumber.value = "";
 });

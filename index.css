@@ -3,16 +3,18 @@
   margin: 0;
   font-family: sans-serif;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
-  background-color: rgb(246, 246, 249);
+  background-color: hsl(228deg, 37%, 62%);
+  background-image: linear-gradient(90deg, hsl(228deg, 37%, 62%) 0%, hsl(227deg, 11%, 50%) 100%);
 }
 
 .page-container {
   margin: 50px auto;
-  width: 40%;
-  background-color: rgb(43, 43, 44);
+  width: 50%;
+  background-color: rgb(47, 47, 47);
   border: none;
   border-radius: 8px;
   padding: 20px;
@@ -43,17 +45,22 @@ body {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  background-color: hsl(228deg, 37%, 62%);
+  background-image: linear-gradient(90deg, hsl(228deg, 37%, 62%) 0%, hsl(227deg, 11%, 50%) 100%);
+  color: white;
+  font-size: 18px;
+  letter-spacing: 3px;
   cursor: pointer;
 }
 .page-container .contact-insert form button:hover {
   opacity: 0.7;
 }
 .page-container .contact-list {
-  margin-top: 20px;
+  margin-top: 10px 0px;
   padding: 20px;
 }
 .page-container .contact-list .display-contact {
-  color: white;
+  color: hsl(228deg, 37%, 62%);
   font-weight: bold;
   text-align: center;
 }
@@ -62,21 +69,31 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
-  background-color: rgb(244, 245, 246);
+  background-color: hsl(228deg, 37%, 62%);
+  background-image: linear-gradient(90deg, hsl(228deg, 37%, 62%) 0%, hsl(227deg, 11%, 50%) 100%);
   border: none;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
 }
 .page-container .contact-list .contact-content .contact-info h3 {
-  color: rgb(133, 11, 11);
+  color: rgb(251, 249, 249);
+  padding-bottom: 7px;
 }
 .page-container .contact-list .contact-content .contact-info p {
-  color: grey;
+  color: rgb(34, 34, 34);
 }
-.page-container .contact-list .contact-content .remove-contact i {
+.page-container .contact-list .contact-content .icons .remove-contact {
   color: rgb(133, 11, 11);
   cursor: pointer;
+  padding-right: 18px;
 }
-.page-container .contact-list .contact-content .remove-contact i:hover {
+.page-container .contact-list .contact-content .icons .remove-contact:hover {
+  opacity: 0.7;
+}
+.page-container .contact-list .contact-content .icons .call-icon {
+  color: rgb(16, 77, 34);
+  cursor: pointer;
+}
+.page-container .contact-list .contact-content .icons .call-icon:hover {
   opacity: 0.7;
 }/*# sourceMappingURL=index.css.map */
