@@ -62,6 +62,7 @@ body {
   color: hsl(228deg, 37%, 62%);
   font-weight: bold;
   text-align: center;
+  margin-top: 25px;
 }
 .page-container .contact-list .contact-content {
   display: flex;
