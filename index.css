@@ -69,7 +69,7 @@ body {
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
   background-color: hsl(228deg, 37%, 62%);
   background-image: linear-gradient(90deg, hsl(228deg, 37%, 62%) 0%, hsl(227deg, 11%, 50%) 100%);
   border: none;
