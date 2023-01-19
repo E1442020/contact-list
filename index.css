@@ -75,6 +75,11 @@ body {
   border-radius: 5px;
   padding: 15px;
 }
+@media (max-width: 940px) {
+  .page-container .contact-list .contact-content {
+    width: 100%;
+  }
+}
 .page-container .contact-list .contact-content .contact-info h3 {
   color: rgb(251, 249, 249);
   padding-bottom: 7px;

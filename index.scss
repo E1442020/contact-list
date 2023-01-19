@@ -66,6 +66,7 @@ background-image: linear-gradient(90deg, hsla(228, 37%, 62%, 1) 0%, hsla(227, 11
         margin-top: 10px 0px;
         
         padding: 20px;
+       
         .display-contact{
             color: hsla(228, 37%, 62%, 1);;
             font-weight: bold;
@@ -81,6 +82,9 @@ background-image: linear-gradient(90deg, hsla(228, 37%, 62%, 1) 0%, hsla(227, 11
                               border: none;
         border-radius: 5px;
         padding: 15px;
+        @include breakpoints(mobile){
+            width: 100%;
+        }
           .contact-info{
             h3{
                 color: rgb(251, 249, 249);
