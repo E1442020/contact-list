@@ -1,3 +1,11 @@
+import { PlainLocalStorageDriver, setCacheConfigurations } from "@mongez/cache";
+
+setCacheConfigurations({
+  driver: new PlainLocalStorageDriver(),
+});
+
+import cache from "@mongez/cache";
+
 let insertContactName = document.querySelector(
   ".insertContactName"
 ) as HTMLInputElement;
@@ -23,11 +31,13 @@ interface Contact {
 }
 
 const checkContactInfo = (): Contact[] => {
-  let info = localStorage.getItem("contactInfo");
+    let info = cache.get("contactInfo");
+
   if (info === null) {
     return [];
   }
-  return JSON.parse(info);
+  return info;
+
 };
 
 let contactArr: Contact[] = checkContactInfo();
@@ -48,16 +58,11 @@ let checkContactInformation = ():void => {
 
 
 let setContactToLocalStorage = ():void => {
-  localStorage.setItem("contactInfo", JSON.stringify(contactArr));
-
+  cache.set("contactInfo", contactArr);
   checkContactInformation()
 
   
 };
-// localStorage.clear()
-
-
-
 
 
 
@@ -135,7 +140,6 @@ let addNewContact = (contact: Contact):void => {
         }
       }}
       );
-      // console.log(contactArr)
 
       checkContactInformation()
 
